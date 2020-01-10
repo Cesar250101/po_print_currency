@@ -26,6 +26,8 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'reports/orden_compra.xml',
+        'reports/orden_compra_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

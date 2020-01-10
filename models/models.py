@@ -22,3 +22,17 @@ class ImprimirOrdenCompra(models.Model):
                     tasacambio=i.inverse_rate
             self.tasa_cambio=tasacambio
 
+class ImprimirOrdenCompraLinea(models.Model):
+    _inherit = 'purchase.order.line'
+
+    precio_dolar = fields.Float(string="Precio en Dolar",  required=False, store=True)
+
+    @api.model
+    @api.onchange('precio_dolar')
+    def _onchange_precio_dolar(self):
+        if self.order_id.tasa_cambio!=0:
+            precio_unitario=self.precio_dolar*self.order_id.tasa_cambio
+        self.price_unit = precio_unitario
+
+
+
